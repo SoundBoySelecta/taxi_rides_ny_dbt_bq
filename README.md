@@ -2,10 +2,13 @@ DBT - Data Built Tool
 Dbt is a transformation layer tool used mostly within Data ware houses (DWH) focusing on SQL based transformations.
 Use cases: Data engineering practices have evolved, we focus on ELT versus, ETL. Raw data is extracted from 
 sources and loaded into a data lake then transformed in a DWH. DBT is analytics focused, the closer the data gets to 
-the end users analytics there is value in smaller more valid data, smaller in the sense for speed of efficient querying 
-returning results faster and valid as in cleaned data. ETL/ELT still corresponds to (bronze, silver, gold) 
-medallion architecture, ELT also takes advantage of seperating compute and storage, we can use compute 
-resources to extract data from disparate systems and use a seperate storage scheme in this case a data lake.
+the end user analysts, there is value in smaller and higher quality data. Smaller in the sense for speed of efficient querying 
+returning results faster and higher quality in that its clean data. Finally we create query optimized schemas prior to the data being 
+ingested into analytics workflows, to minimize compute resources by not having to query large joined tables with may contain dirty data. 
+The DBT workflow corresponds to (bronze, silver, gold)  medallion architecture, by segregating each layer into different models and applying SQL logic
+to clean, tranform and re-model this data into star/snowflake type schemas, where we move away from OLTP but rather enforce OLAP design principales.
+ELT also takes advantage of seperating compute and storage, where we can use compute resources to extract data from disparate systems 
+and use a seperate storage scheme in this case a data lake.
 
 Why do we need to separate compute and storage?
 Scalability: We can scale each at differently, without impacting each other.
@@ -20,5 +23,9 @@ layer is still available and vise versa. Cloud systems replicate and distribute 
 Data Portability: We can manage and migrate data between systems as needed.
 Specialized workloads: catered solutions each component, can use object storage for unstructured and relation databases 
 for structured, and use general purpose compute for processing.
+
+Once our data is extracted and loaded into a DWH, we can start our DBT workflow.
+Setting up a project on DBT is very straight forward: You have an option to run local or on cloud IDE. Once a cloud acount is setup, do the following.
+
 
 
