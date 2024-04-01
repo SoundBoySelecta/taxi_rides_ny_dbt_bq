@@ -24,8 +24,12 @@ Data Portability: We can manage and migrate data between systems as needed.
 Specialized workloads: catered solutions each component, can use object storage for unstructured and relation databases 
 for structured, and use general purpose compute for processing.
 
-Once our data is extracted and loaded into a DWH, we can start our DBT workflow.
-Setting up a project on DBT is very straight forward: You have an option to run local or on cloud IDE. Once a cloud acount is setup, do the following.
+Once our data is extracted from source and loaded into a DWH, we can start our DBT workflow.
+Setting up a project on DBT is very straight forward: You have an option to run local or on cloud IDE. Once a cloud account is setup, do the following:
+1. Create a project. 
+2. Link your GH account fully where you will be able to see all your repos or just clone a repo.
+3. If you clone a repo, you inherit into DBT.
+
 
 
 
