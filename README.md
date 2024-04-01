@@ -29,7 +29,10 @@ Setting up a project on DBT is very straight forward: You have an option to run 
 1. Create a project. Name project.
 2. Link your GH account fully where you will be able to see all your repos or just clone a repo.
 3. If you clone a repo, you inherit into DBT the same directory structure which you will see in file browser in DBT cloud.
-4. 
+4. Edit dbt_project.yml to modify project name and add the 'staging' model under models.
+5. Create a sub-directory named 'staging' under models directory, this is where all your sql code will be.
+6. Create a schema.yml file which will define to DBT your sources.
+    - Name the source 'staging' and define the sources, project_id.dataset.table in Big Query is equivalent to databae.schema.table in DBT 
 
 
 
