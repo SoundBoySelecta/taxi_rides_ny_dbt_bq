@@ -74,26 +74,43 @@ and case tested it for casted int values then returned a string representation o
             else 'EMPTY'
 Its like df[column].apply(function)
 E. Packages in DBT are like libraries of prewritten code
-1. First create a packages.yml in project root directory with
+1. First create a packages.yml in project root directory use code from DBT HUB
 packages:
   - package: dbt-labs/dbt_utils
     version: 1.1.1 
-2. run command "dbt deps", which will Run dbt deps to install the package(s)in the dbt_packages directory 
+2. run command "dbt deps", which will Run 'dbt deps' to install the package(s)in the dbt_packages directory 
 by default this directory is ignored by git, to avoid duplicating the source code for the package.
-3. We will experiment with a package called generate_surrogate_key, which basically builds an key (ID),
-which is made from 2 columns.
-4. Imbed copied code in sql and punch in the columns
+3. We will experiment with a package called generate_surrogate_key, which basically builds a unique identified 
+which is derived from 2 columns, which will be used as an ID.
+4.  {{ dbt_utils.generate_surrogate_key(['vendor_id', 'pickup_datetime']) }} as trip_id,
+This whlole represent a column in a SELECT statement: Use the function from the dbt_utils package
+dbt_utils.generate_surrogate_key
+Use a list of columns as the parameter (['vendor_id', 'pickup_datetime'])
+Return a column named trip_id
 5. then query the view in BQ and you will see trip_id
-4. Use {{config()}} to overide defaults
-5. Global variables can be created in project.yml, in the form of of a dict:
+F. Variables: created at the project scope (anything under project has access)
+1. Global variables can be created in project.yml, in the form of of a dict:
+A. Static creation:
+    vars is the dict name, each key:value paid is a variable.
     vars: 
         var_name1:value1
         var_name2:value2
         var_name3:value3
     
     Calling a variable:
-        var(var_name) or var(var_name: dafault=value)
+        var(var_name) or set default value for a var(var_name: dafault=value)
+If a variable exists then run that variable if not then set it a default value.
     Used in conditionals:
     {% if var('is_test_run', default=true)%}
         limit 100
     {% endif %}
+B. Dynamic creation: {{var('key:value')}}  
+
+2. Use {{config(field=value)}} macro to overide default, where field=value, is 
+value we want to change.
+G. All models in staging as views and all models in core are tables. Just like in 
+pandas when I finish all the cleaning and transformation, I save as a parquet, 
+anything before are copies and probably not efficient memory management 
+(unless you use garbage collection).
+
+
