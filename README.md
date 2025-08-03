@@ -4,7 +4,7 @@ Use cases: Data engineering practices have evolved, we focus on ELT versus, ETL.
 sources and loaded into a data lake then transformed in a DWH. DBT is analytics focused, the closer the data gets to 
 the end user analysts, there is value in smaller and higher quality data. Smaller in the sense for speed of efficient querying 
 returning results faster and higher quality in that its clean data. Finally we create query optimized schemas prior to the data being 
-ingested into analytics workflows, to minimize compute resources by not having to query large joined tables with may contain dirty data. 
+ingested into analytics workflows, to minimize compute resources by not having to query large joined tables which may contain dirty data. 
 The DBT workflow corresponds to (bronze, silver, gold)  medallion architecture, by segregating each layer into different models and applying SQL logic
 to clean, tranform and re-model this data into star/snowflake type schemas, where we move away from OLTP but rather enforce OLAP design principales.
 ELT also takes advantage of seperating compute and storage, where we can use compute resources to extract data from disparate systems 
