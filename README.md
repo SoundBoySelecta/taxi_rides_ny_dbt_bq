@@ -1,4 +1,4 @@
-DBT - Data Built Tool
+DBT - Data Built Tool <br>
 Dbt is a transformation layer tool used mostly within Data ware houses (DWH) focusing on SQL based transformations.
 Use cases: Data engineering practices have evolved, we focus on ELT versus, ETL. Raw data is extracted from 
 sources and loaded into a data lake then transformed in a DWH. DBT is analytics focused, the closer the data gets to 
